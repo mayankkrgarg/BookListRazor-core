@@ -1,0 +1,52 @@
+﻿@page
+@model BookListRazor.Pages.BookList.IndexModel
+@{
+}
+<br />
+<div class="container row">
+    <div class="col-8">
+        <h1> Book List</h1>
+    </div>
+    <div class="col-4">
+        <a asp-page="Create" class="btn btn-success">Add new book</a>
+    </div>
+</div>
+<div class="container border p-3 mt-3">
+    @if(Model.books.Count()>0)
+    {
+          <table class="table table-striped border">
+            <tr class="table-secondary">
+                  <th><label asp-for="books.FirstOrDefault().Name"></label></th>
+                  <th><label asp-for="books.FirstOrDefault().Author"></label></th>
+                  <th><label asp-for="books.FirstOrDefault().ISBN"></label></th>
+            </tr>
+            @foreach(var item in Model.books){
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m=>item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m=>item.Author)
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col-5">
+                                @Html.DisplayFor(m=>item.ISBN)
+                            </div>
+                            <div class="col-7">
+                                <button asp-page-handler="Delete" asp-route-id="@item.BookId" onclick="return confirm('Are you sure?')" class="btn-danger btn-sm">Delete</button>
+                                <a asp-page="Edit" asp-route-id="@item.BookId" class="btn-primary btn-sm">Edit</a>    
+                            </div>
+                        </div>
+                    </td>
+                    
+                </tr>
+            }
+          </table>  
+    }
+    else
+    {
+        <div>No books available.</div>
+    }
+</div>
+
