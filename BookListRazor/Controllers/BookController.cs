@@ -6,11 +6,11 @@ namespace BookListRazor.Controllers
 {
     [Route("api/Book")]
     [ApiController]
-    public class HomeController : Controller
+    public class BookController : Controller
     {
         ApplicationDBContext dBContext;
 
-        public HomeController(ApplicationDBContext dB)
+        public BookController(ApplicationDBContext dB)
         {
             this.dBContext = dB;
         }
